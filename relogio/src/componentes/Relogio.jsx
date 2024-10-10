@@ -14,11 +14,26 @@ function Relogio() {
         }
     },[])
 
+    function formataTempo() {
+        let horas = tempo.getHours()
+        const minutos = tempo.getMinutes()
+        const segundos = tempo.getSeconds()
+        const m = horas >= 12 ? "PM" : "AM"
+
+        horas = horas % 12 || 12
+
+        return `${zero(horas)}:${zero(minutos)}:${zero(segundos)} ${m}`
+    }
+
+    function zero(numero) {
+        return (numero < 10 ? "0" : "") + numero
+    }
+
     return(
         <>
             <div className="containerRelogio">
                 <div className="relogio">
-                    <span>00:00:00</span>
+                    <span>{formataTempo()}</span>
                 </div>
             </div>
         </>
